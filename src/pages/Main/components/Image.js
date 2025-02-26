@@ -36,6 +36,7 @@ const ImageContainer = styled.div`
   height: 60%;
   position: relative;
   overflow: hidden;
+  padding: 0 10px;
 `;
 
 const ImageInput = styled.input`
