@@ -27,4 +27,5 @@ const Title = styled.div`
 `;
 const Link = styled.div`
   font-size: 25px;
+  text-decoration: underline;
 `;

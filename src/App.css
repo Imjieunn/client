@@ -1,8 +1,8 @@
 .App {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   height: 95vh;
-  margin: 0 20vw;
+  margin: 0 30vw;
   box-sizing: border-box;
 }
