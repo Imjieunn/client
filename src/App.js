@@ -1,9 +1,10 @@
 import "./App.css";
+import Router from "./Router";
 
 function App() {
   return (
     <div className="App">
-      <p>사진 및 챗봇 화면</p>
+      <Router />
     </div>
   );
 }
