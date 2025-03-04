@@ -1,6 +1,70 @@
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
+/*  
+==================================
+🚀 TODO LIST 
+==================================
+
+✅ 1. Webpack 5에서 'crypto' 모듈 문제 해결 (혹시 실행하는 버전에서 문제 있을 경우)
+   - axios를 사용할 때 Webpack 5가 더 이상 'crypto' 모듈을 자동 포함하지 않음.
+   - 해결 방법:
+     ➜ 필요한 polyfill 패키지 설치:
+       `npm install crypto-browserify stream-browserify assert stream-http https-browserify os-browserify url buffer`
+     ➜ Webpack fallback 설정 추가:
+       package.json → `"browser": { "crypto": "crypto-browserify" }` 추가
+
+✅ 2. Django 백엔드 `talk` API 연동 (💡 필요) 
+   - 현재 프론트엔드에서만 채팅을 처리하고 있음.
+   - Django API (`/api/talk/:memoryId/`) 호출하여 실제 데이터 연동 필요.
+
+*/
+
+// import axios from "axios";
+
+// const Chat = ({ memoryId }) => {
+//   const [messages, setMessages] = useState([
+//     { type: "gpt", text: "안녕하세요! 무엇을 도와드릴까요?" }
+//   ]);
+//   const [inputText, setInputText] = useState("");
+//   const messagesEndRef = useRef(null);
+
+//   // 백엔드 API로 메시지 전송 및 응답 받기
+//   const sendMessageToServer = async (message) => {
+//     if (!memoryId) {
+//       alert("먼저 이미지를 업로드하세요.");
+//       return;
+//     }
+
+//     try {
+//       const response = await axios.post( 
+//         `http://127.0.0.1:8000/api/talk/${memoryId}/`, // django talk api 호출로 변경
+//         { content: message }
+//       );
+
+//       return response.data.content; // GPT 응답 텍스트 반환
+//     } catch (error) {
+//       console.error("서버 요청 오류:", error);
+//       return "서버와의 연결이 원활하지 않습니다.";
+//     }
+//   };
+
+//   // 메시지 전송 함수
+//   const handleSendMessage = async () => {
+//     if (inputText.trim() === "") return;
+
+//     const newMessage = { type: "user", text: inputText };
+//     setMessages((prevMessages) => [...prevMessages, newMessage]); // 사용자 메시지 추가
+//     setInputText("");
+
+//     // 서버에 요청 보내기
+//     const gptResponse = await sendMessageToServer(inputText);
+//     const gptMessage = { type: "gpt", text: gptResponse };
+
+//     setMessages((prevMessages) => [...prevMessages, gptMessage]); // GPT 응답 추가
+//   };
+
+
 const Chat = () => {
   const [messages, setMessages] = useState([
     { type: "gpt", text: "안녕하세요! 무엇을 도와드릴까요?" },
@@ -17,6 +81,8 @@ const Chat = () => {
     setInputText("");
   };
 
+
+  // Enter 키 이벤트
   const handleKeyDown = (e) => {
     if (e.nativeEvent.isComposing) return;
     if (e.key === "Enter") {
@@ -24,6 +90,7 @@ const Chat = () => {
     }
   };
 
+  // 채팅 자동 스크롤 설정
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -53,6 +120,7 @@ const Chat = () => {
 };
 
 export default Chat;
+
 
 const ChatContainer = styled.div`
   display: flex;
