@@ -5,15 +5,17 @@ const Result = () => {
   const location = useLocation();
   const resultUrl = location.state?.resultUrl;
 
-  const goToResultPage = () => {
-    window.open(resultUrl, "_blank");
-  };
-
   return (
     <Container>
-      <LogoImg src="/img/miraeasset.jpg" />
-      <Title>결과 확인⬇️</Title>
-      <Link onClick={goToResultPage}>{resultUrl}</Link>
+      <LogoWrapper>
+        <LogoImg src="/img/miraeasset.jpg" />
+      </LogoWrapper>
+
+      {resultUrl ? (
+        <ResultImage src={resultUrl} alt="결과 이미지" />
+      ) : (
+        <ErrorMessage>결과 이미지가 없습니다.</ErrorMessage>
+      )}
     </Container>
   );
 };
@@ -25,22 +27,32 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 100vh;
+  gap: 15px;
+`;
+
+const LogoWrapper = styled.div`
+  margin-bottom: 5px;
 `;
 
 const LogoImg = styled.img`
-  width: 300px;
+  width: 200px;
   height: auto;
 `;
 
 const Title = styled.h2`
   margin-bottom: 10px;
-  font-size: 50px;
+  font-size: 30px;
 `;
 
-const Link = styled.a`
-  color: blue;
-  cursor: pointer;
-  text-decoration: underline;
-  font-size: 25px;
+const ResultImage = styled.img`
+  max-width: 200%;
+  max-height: 1000px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+`;
+
+const ErrorMessage = styled.p`
+  font-size: 18px;
+  color: red;
 `;
