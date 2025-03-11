@@ -1,16 +1,22 @@
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import Header from "../Main/components/Header";
 
 const Result = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const resultUrl = location.state?.resultUrl;
 
+  const goHome = () => {
+    navigate("/"); // 홈(/)으로 이동
+  };
+
   return (
     <Container>
-      <LogoWrapper>
-        <LogoImg src="/img/miraeasset.jpg" />
-      </LogoWrapper>
-
+      <HeaderContainer onClick={goHome}>
+        <Header />
+      </HeaderContainer>
+      <Title>감정분석 결과</Title>
       {resultUrl ? (
         <ResultImage src={resultUrl} alt="결과 이미지" />
       ) : (
@@ -25,19 +31,15 @@ export default Result;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
-  gap: 15px;
+  height: 100%;
+  background-color: #f8f9fc;
+  font-family: Arial, sans-serif;
 `;
 
-const LogoWrapper = styled.div`
-  margin-bottom: 5px;
-`;
-
-const LogoImg = styled.img`
-  width: 200px;
-  height: auto;
+const HeaderContainer = styled.div`
+  width: 100%;
+  cursor: pointer; /* 클릭 가능하도록 설정 */
 `;
 
 const Title = styled.h2`

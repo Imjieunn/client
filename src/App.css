@@ -2,7 +2,8 @@
   /* display: flex;
   justify-content: center;
   align-items: center; */
-  height: 95vh;
-  margin: 0 30vw;
+  height: 100vh;
+  margin: -8px;
+  padding: 0;
   box-sizing: border-box;
 }

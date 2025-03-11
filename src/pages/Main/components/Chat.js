@@ -81,12 +81,15 @@ const ChatContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border: 4px solid #f58220;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px;
   flex-grow: 2;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 40px);
   padding: 10px;
   gap: 10px;
+  background-color: #f8f9fc;
 `;
 
 const MessagesContainer = styled.div`
@@ -107,7 +110,7 @@ const Message = styled.div`
   border-radius: 10px;
   word-break: break-word;
   background-color: ${(props) =>
-    props.type === "gpt" ? "#e0e0e0" : "#F58220"};
+    props.type === "gpt" ? "#e0e0e0" : "#0055aa"};
   color: ${(props) => (props.type === "gpt" ? "#000" : "#fff")};
   align-self: ${(props) => (props.type === "gpt" ? "flex-start" : "flex-end")};
 `;
@@ -132,21 +135,23 @@ const ChatInput = styled.input`
 
   &:focus {
     border: ${(props) =>
-      props.disabled ? "1px solid #ccc" : "2px solid #f58220"};
+      props.disabled ? "1px solid #ccc" : "1px solid #0055aa"};
     box-shadow: ${(props) =>
-      props.disabled ? "none" : "0 0 5px rgba(245, 130, 32, 0.5)"};
+      props.disabled
+        ? "none"
+        : "0 0 5px rgba(0, 85, 170, 0.5)"}; /* border 색상 (#0055aa)과 동일한 box-shadow */
   }
 `;
 
 const SendButton = styled.button`
   padding: 10px 15px;
-  background-color: ${(props) => (props.disabled ? "#ccc" : "#f58220")};
+  background-color: ${(props) => (props.disabled ? "#ccc" : "#0055aa")};
   color: ${(props) => (props.disabled ? "#888" : "white")};
   border: none;
   border-radius: 5px;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
   &:hover {
-    background-color: ${(props) => (props.disabled ? "#ccc" : "#cb6015")};
+    background-color: ${(props) => (props.disabled ? "#ccc" : "#0077cc")};
   }
 `;
